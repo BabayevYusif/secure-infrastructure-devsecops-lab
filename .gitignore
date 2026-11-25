@@ -1,0 +1,26 @@
+# Secrets and credentials - never commit
+.env
+*.env
+*.pem
+*.key
+*.ovpn
+*.kubeconfig
+kubeconfig*
+id_rsa*
+ansible/vault_pass*
+ansible/*.vault
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Raw logs and local artifacts
+*.log
