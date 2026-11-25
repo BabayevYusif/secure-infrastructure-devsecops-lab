@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Simple HTTP health check for the lab API.
 
 Usage:
