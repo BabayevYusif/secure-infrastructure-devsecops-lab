@@ -1,0 +1,19 @@
+# Run from the repository root:  docker compose -f docker/docker-compose.yml up --build
+services:
+  api:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: devsecops-lab-api:local
+    ports:
+      - "127.0.0.1:8080:8080"   # bound to loopback only
+    environment:
+      APP_ENV: "lab"
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
