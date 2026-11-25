@@ -5,6 +5,11 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PIP_NO_CACHE_DIR=1
 
+# Apply OS security updates (fixes HIGH CVE found by Trivy in libzstd1)
+RUN apt-get update \
+ && apt-get upgrade -y --no-install-recommends \
+ && rm -rf /var/lib/apt/lists/*
+
 # Run as an unprivileged user (no root inside the container)
 RUN groupadd --system --gid 10001 app \
  && useradd  --system --uid 10001 --gid app --no-create-home --shell /usr/sbin/nologin app
