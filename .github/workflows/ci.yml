@@ -36,10 +36,11 @@ jobs:
     permissions:
       contents: read
       packages: write
-    env:
-      IMAGE: ghcr.io/${{ github.repository_owner }}/devsecops-lab-api
     steps:
       - uses: actions/checkout@v4
+
+      - name: Set lowercase image name
+        run: echo "IMAGE=ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/devsecops-lab-api" >> "$GITHUB_ENV"
 
       - name: Build image
         run: docker build -f docker/Dockerfile -t "$IMAGE:${{ github.sha }}" .
